@@ -38,7 +38,7 @@
     watch: {
       $route: {
         handler: function(val, oldVal){
-          if(val.name == 'company' || val.name == 'mobile'){
+          if(val.name == 'company' || val.name == 'mobile' || val.name == 'data'){
             this.showCompanyBar = false;
           }else {
             this.showCompanyBar = true;

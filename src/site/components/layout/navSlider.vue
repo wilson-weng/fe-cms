@@ -16,6 +16,10 @@
         <i class="el-icon-menu"></i>
         <span slot="title">公司列表</span>
       </el-menu-item>
+      <el-menu-item index="/data">
+        <i class="el-icon-menu"></i>
+        <span slot="title">数据获取</span>
+      </el-menu-item>
     </el-menu>
     <div style="position:fixed; left:0; bottom:0;width:200px;">
       <el-row>

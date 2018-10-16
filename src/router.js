@@ -4,6 +4,7 @@ import login from './site/views/login.vue'
 import main from './site/views/main.vue'
 import worktable from './site/views/workTable.vue'
 import company from './site/views/companyList.vue'
+import dataGetter from './site/views/dataGetter.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,10 @@ const routes = [
       path: '/worktable',
       name: 'worktable',
       component: worktable,
+    },{
+      path: '/data',
+      name: 'data',
+      component: dataGetter,
     }]
   },
   {

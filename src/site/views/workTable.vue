@@ -14,6 +14,9 @@
             <el-button @click.native.prevent="update(scope.row)" type="text">
               编辑
             </el-button>
+            <el-button @click.native.prevent="feconfigure(scope.row)" type="text">
+              前端配置
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -28,6 +31,9 @@
               <el-button type="primary" @click="showPluginDialog=false">确认</el-button>
           </span>
     </el-dialog>
+    <el-dialog title="前端配置" :visible.sync="showFeconfigDialog">
+      <feconfigure-panel></feconfigure-panel>
+    </el-dialog>
   </div>
 </template>
 
@@ -35,11 +41,12 @@
   import { mapState, mapActions } from 'vuex';
   import pluginButton from '../components/pluginButton.vue';
   import pluginEditPanel from '../components/pluginEditPanel.vue';
+  import feconfigurePanel from '../components/feconfigurePanel.vue';
 
   export default {
     props: [],
 
-    components: { pluginButton, pluginEditPanel },
+    components: { pluginButton, pluginEditPanel, feconfigurePanel },
 
     computed: {
       ...mapState({
@@ -56,6 +63,11 @@
         this.setCurrentProj({curProjId: selectedProj.proj_id, curPlugins: selectedProj.plugins})
         this.showPluginDialog = true;
       },
+      feconfigure(selectedProj) {
+        this.projName = selectedProj.proj_name;
+        this.setCurrentProj({curProjId: selectedProj.proj_id, curPlugins: selectedProj.plugins})
+        this.showFeconfigDialog = true;
+      },
       changePlugin(type, pluginId){
         this.queryProjs()
       },
@@ -69,6 +81,7 @@
         tableData: [],
         showPlugins: false,
         showPluginDialog: false,
+        showFeconfigDialog: false,
         projName: '',
         count: 10,
         curPage: 1,

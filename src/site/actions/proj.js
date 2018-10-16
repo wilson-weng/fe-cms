@@ -2,6 +2,7 @@ import * as mutation from '../constants/mutationTypes';
 import * as urls from '../constants/urls';
 import * as Utils from '../utils';
 import * as mutationTypes from 'src/site/constants/mutationTypes'
+import axios from 'axios'
 
 
 export const getProjList = ({ commit }, params) => {
@@ -41,7 +42,7 @@ export const getPlugins = ({ commit }) => {
     });
 }
 
-export function updatePlugin({ commit }, params){
+export const updatePlugin = ({ commit }, params) => {
   return fetch(`${urls.PROJ_PlUGIN_UPDATE}`,{
     method: 'POST',
     credentials: 'include',
@@ -59,6 +60,17 @@ export function updatePlugin({ commit }, params){
       }
     });
 }
+
+
+export const getPageConfigure = ({ commit }) => {
+  return axios.get(`${urls.FE_CONFIGURE}`)
+    .then(response => response.data)
+};
+
+export const updatePageConfigure = ({ commit }, params) => {
+  return axios.post(`${urls.FE_CONFIGURE}`, params)
+    .then(response => response.data)
+};
 
 
 export const setCurrentProj = ({ commit }, proj) => {

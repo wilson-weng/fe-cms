@@ -1,4 +1,7 @@
 import * as mutationTypes from '../constants/mutationTypes';
+import axios from 'axios'
+import * as urls from '../constants/urls';
+
 
 export const setCurrentCompany = ({ commit }, currentCompany) => {
   commit(mutationTypes.SET_CUR_COMPANY, currentCompany);
@@ -27,3 +30,15 @@ export const checkLoginUser = ({ commit }, params) => {
     }
   });
 }
+
+
+export const getDataGetters = ({ commit }) => {
+  return axios.get(`${urls.DATA_GETTER}`)
+    .then(response => response.data)
+};
+
+
+export const refreshDataGetter = ({ commit }) => {
+  return axios.get(`${urls.DATA_GETTER_REFRESH}`)
+    .then(response => response.data)
+};
