@@ -3,8 +3,8 @@ import axios from 'axios'
 import * as urls from '../constants/urls';
 
 
-export const setCurrentCompany = ({ commit }, currentCompany) => {
-  commit(mutationTypes.SET_CUR_COMPANY, currentCompany);
+export const setCurrentOrg = ({ commit }, currentOrg) => {
+  commit(mutationTypes.SET_CUR_ORG, currentOrg);
 }
 
 
@@ -42,3 +42,16 @@ export const refreshDataGetter = ({ commit }) => {
   return axios.get(`${urls.DATA_GETTER_REFRESH}`)
     .then(response => response.data)
 };
+
+
+
+export const getOrgs = ({ commit }) => {
+  return axios.get(`${urls.ORG_CRUD}`)
+    .then(response => response.data)
+    .then(res=>{
+      res.status === 'ok' && commit(mutationTypes.SET_ORG_LIST, res.data);
+      return res
+    })
+};
+
+

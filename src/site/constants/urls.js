@@ -1,7 +1,7 @@
 
 const domain = 'http://localhost:5000';
 
-export const CRUD_COMPANY = `${domain}/company`;
+export const ORG_CRUD = `${domain}/org`;
 
 export const GET_PLUGIN_QUERY = `${domain}/plugin/query`;
 

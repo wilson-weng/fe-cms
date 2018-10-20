@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from './site/views/login.vue'
 import main from './site/views/main.vue'
-import worktable from './site/views/workTable.vue'
+import plugin from './site/views/plugin.vue'
 import company from './site/views/companyList.vue'
+import feconfigure from './site/views/feconfigure.vue'
 import dataGetter from './site/views/dataGetter.vue'
 
 Vue.use(VueRouter)
@@ -23,14 +24,19 @@ const routes = [
       name: 'company',
       component: company,
     },{
-      path: '/worktable',
-      name: 'worktable',
-      component: worktable,
+      path: '/plugin',
+      name: 'plugin',
+      component: plugin,
     },{
-      path: '/data',
-      name: 'data',
-      component: dataGetter,
+      path: '/feconfigure',
+      name: 'feconfigure',
+      component: feconfigure,
     }]
+  },
+  {
+    path: '/data',
+    name: 'data',
+    component: dataGetter,
   },
   {
     path: '/logout',

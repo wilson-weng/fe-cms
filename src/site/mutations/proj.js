@@ -2,7 +2,8 @@ import * as actions from '../actions/proj';
 import * as MutationTypes from '../constants/mutationTypes';
 
 const initState = {
-    projs: [],
+    projList: [],
+    projTotalPage: 0,
     pluginCats: [],
     plugins: {},
     curPlugins: [],
@@ -20,13 +21,14 @@ const mutations = {
         state.pluginCats.indexOf(plugin.category) < 0 && state.pluginCats.push(plugin.category);
       })
     },
-    [MutationTypes.GET_PROJ_PLUGINS](state, content) {
-        state.projs = content.map(m=>{
+    [MutationTypes.GET_PROJ_PLUGINS](state, data) {
+        state.projList = data.result.map(m=>{
             m.plugins.map(p=>{
                 p.key = p.id;
             })
             return m;
         });
+        state.projTotalPage = data.total_page;
     },
   [MutationTypes.SET_CURRENT_PLUGIN](state, content) {
     state.curPlugins = content;

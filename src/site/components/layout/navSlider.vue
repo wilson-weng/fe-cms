@@ -1,21 +1,16 @@
 <template>
   <div>
-    <el-menu v-if="companySelected"
-             default-active="/worktable"
+    <el-menu default-active="/company"
              :router="true"
              class="no-border m-t-1">
-      <el-menu-item index="/worktable">
-        <i class="el-icon-menu"></i>
-        <span slot="title">操作台</span>
-      </el-menu-item>
-    </el-menu>
-    <el-menu v-else
-             :router="true"
-             class="no-border m-t-1">
-      <el-menu-item index="/company">
-        <i class="el-icon-menu"></i>
-        <span slot="title">公司列表</span>
-      </el-menu-item>
+      <el-submenu  index="/company">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>公司管理</span>
+        </template>
+        <el-menu-item index="/plugin">插件管理</el-menu-item>
+        <el-menu-item index="/feconfigure">前端配置</el-menu-item>
+      </el-submenu>
       <el-menu-item index="/data">
         <i class="el-icon-menu"></i>
         <span slot="title">数据获取</span>
@@ -58,26 +53,9 @@
 
     data() {
         return {
-          companySelected: false,
           showResetPswDialog: false
         }
     },
-    watch: {
-      $route: {
-        handler: function(val, oldVal){
-          if(val.name == 'company' || !this.currentCompany.id){
-            this.companySelected = false;
-          }else{
-            this.companySelected = true;
-          }
-        },
-        // 深度观察监听
-        deep: true
-      }
-    },
-    created(){
-      this.companySelected = !!this.currentCompany.id;
-    }
 
   }
 </script>

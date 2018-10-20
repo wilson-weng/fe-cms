@@ -6,15 +6,11 @@ import axios from 'axios'
 
 
 export const getProjList = ({ commit }, params) => {
-  return fetch(`${urls.GET_PROJ_PLUGINS}?page=${params.page}&company_id=${params.company_id}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: Utils.getFormHeader(),
-  })
-    .then(response => response.json())
+  axios.get(`${urls.GET_PROJ_PLUGINS}?page=${params.page}&org_id=${params.org_id}`,)
+    .then(response => response.data)
     .then(result => {
       if(result.status == 'ok'){
-        commit(mutation.GET_PROJ_PLUGINS, result.content.result);
+        commit(mutation.GET_PROJ_PLUGINS, result.content);
         return result;
       }
       else{

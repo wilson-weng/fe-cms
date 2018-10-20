@@ -32,7 +32,7 @@
       ...mapActions(['getCompanyList', 'setCurrentCompany']),
       enterCompany(company){
         this.setCurrentCompany(company);
-        this.$router.push({path: 'worktable'});
+        this.$router.push({path: '/plugin'});
       }
     },
     created(){

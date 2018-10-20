@@ -8,7 +8,7 @@
             <nav-slider></nav-slider>
           </el-aside>
           <div style="background-color: #F9FBFD;" class="width-100">
-            <current-company-bar v-if="showCompanyBar"></current-company-bar>
+            <selection-bar v-if="showSelectionBar"></selection-bar>
             <router-view class="router-view"></router-view>
           </div>
       </el-container>
@@ -19,41 +19,18 @@
 <script>
   import navTop from '../components/layout/navTop.vue';
   import navSlider from '../components/layout/navSlider.vue';
-  import currentCompanyBar from '../components/currentCompanyBar.vue';
-  import { mapState } from 'vuex';
+  import selectionBar from '../components/layout/selectionBar.vue';
 
   export default {
     computed: {
-      ...mapState({
-        currentCompany: state => state.global.current_company,
-      }),
     },
-    components: { navTop, navSlider, currentCompanyBar},
+    components: { navTop, navSlider, selectionBar},
 
     data() {
       return {
-        showCompanyBar: false
+        showSelectionBar: true
       }
     },
-    watch: {
-      $route: {
-        handler: function(val, oldVal){
-          if(val.name == 'company' || val.name == 'mobile' || val.name == 'data'){
-            this.showCompanyBar = false;
-          }else {
-            this.showCompanyBar = true;
-          }
-        },
 
-        // 深度观察监听
-        deep: true
-      }
-    },
-    mounted(){
-      this.showCompanyBar = !!this.currentCompany.id;
-      if(!this.currentCompany.id){
-        this.$router.push('company');
-      }
-    }
   }
 </script>
