@@ -2,7 +2,7 @@ import * as actions from '../actions/global';
 import * as mutationTypes from '../constants/mutationTypes';
 
 const initState = {
-  current_org: {id: 1},
+  current_org: '',
   current_user: {},
   org_list: []
 };

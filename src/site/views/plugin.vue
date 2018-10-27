@@ -23,7 +23,7 @@
     <el-dialog title="编辑活动" v-if="showPluginDialog" :visible.sync="showPluginDialog">
       <el-input v-model="projName" disabled class="mission-input"></el-input>
       <br><br><br>
-      <plugin-edit-panel  @changePlugin="changePlugin"></plugin-edit-panel>
+      <plugin-edit-panel  @changePlugin="query"></plugin-edit-panel>
       <span slot="footer" class="dialog-footer">
               <el-button type="primary" @click="showPluginDialog=false">确认</el-button>
           </span>
@@ -47,8 +47,16 @@
         projTotalPage: state => state.proj.projTotalPage,
         plugins: state => state.proj.plugins,
         curProjId: state => state.proj.curProjId,
-        currentOrg: state => state.global.current_org,
+        orgId: state => state.global.current_org? state.global.current_org.id : 0
       }),
+      filters: function(){
+          return {org_id: this.orgId, page: this.page}
+      }
+    },
+    watch: {
+      filters: function () {
+        this.query();
+      },
     },
     methods: {
       ...mapActions(['getProjList', 'getPlugins', 'setCurrentProj']),
@@ -57,13 +65,9 @@
         this.setCurrentProj({curProjId: selectedProj.proj_id, curPlugins: selectedProj.plugins})
         this.showPluginDialog = true;
       },
-      changePlugin(type, pluginId){
-        this.queryProjs()
-      },
       query(){
-        let params = {page: this.page, org_id: this.currentOrg.id};
-        this.getProjList(params);
-      }
+        this.getProjList(this.filters);
+      },
     },
     data() {
       return {

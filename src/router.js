@@ -31,12 +31,11 @@ const routes = [
       path: '/feconfigure',
       name: 'feconfigure',
       component: feconfigure,
+    },{
+      path: '/data',
+      name: 'data',
+      component: dataGetter,
     }]
-  },
-  {
-    path: '/data',
-    name: 'data',
-    component: dataGetter,
   },
   {
     path: '/logout',
